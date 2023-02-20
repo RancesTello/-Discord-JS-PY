@@ -1,0 +1,16 @@
+const Discord = require('discord.js')
+module.exports = async (client, message, args) => {
+  if(!message.member.hasPermission("ADMINISTRATOR", "MANAGE_MESSAGES")) return message.channel.send("No tienes permisos de `Administrador` o de `Gestionar Mensajes`")
+
+let channelNuke = message.channel
+  console.log(channelNuke.position)
+
+  channelNuke.delete()
+
+ let canalNukeado = await message.guild.channels.create(channelNuke.name, {
+    type: "TEXT",
+    parent: channelNuke.parentID
+  })
+
+  canalNukeado.setPosition(channelNuke.position)
+}
